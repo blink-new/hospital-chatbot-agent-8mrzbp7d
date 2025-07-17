@@ -150,11 +150,11 @@ Provide a helpful, professional response. Keep it concise but informative.`,
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
-      <header className="border-b bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/50">
+      <header className="border-b bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/50 animate-fade-in">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center animate-pulse-gentle">
                 <Heart className="h-5 w-5 text-primary-foreground" />
               </div>
               <div>
@@ -162,7 +162,8 @@ Provide a helpful, professional response. Keep it concise but informative.`,
                 <p className="text-sm text-muted-foreground">24/7 Patient Support</p>
               </div>
             </div>
-            <Badge variant="secondary" className="bg-accent/10 text-accent-foreground">
+            <Badge variant="secondary" className="bg-accent/10 text-accent-foreground animate-pulse-gentle">
+              <div className="w-2 h-2 bg-accent rounded-full mr-2"></div>
               Online
             </Badge>
           </div>
@@ -170,19 +171,20 @@ Provide a helpful, professional response. Keep it concise but informative.`,
       </header>
 
       {/* Main Chat Area */}
-      <div className="flex-1 container mx-auto px-4 py-6 max-w-4xl">
-        <Card className="h-[calc(100vh-200px)] flex flex-col">
+      <div className="flex-1 container mx-auto px-4 py-6 max-w-4xl animate-fade-in" style={{ animationDelay: '0.2s' }}>
+        <Card className="h-[calc(100vh-200px)] flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300">
           <CardContent className="flex-1 p-0 flex flex-col">
             {/* Messages */}
             <ScrollArea ref={scrollAreaRef} className="flex-1 p-4">
               <div className="space-y-4">
-                {messages.map((message) => (
-                  <ChatMessage
-                    key={message.id}
-                    message={message.content}
-                    isBot={message.isBot}
-                    timestamp={message.timestamp}
-                  />
+                {messages.map((message, index) => (
+                  <div key={message.id} className="animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                    <ChatMessage
+                      message={message.content}
+                      isBot={message.isBot}
+                      timestamp={message.timestamp}
+                    />
+                  </div>
                 ))}
                 {isTyping && <TypingIndicator />}
               </div>
@@ -203,19 +205,19 @@ Provide a helpful, professional response. Keep it concise but informative.`,
       </div>
 
       {/* Footer */}
-      <footer className="border-t bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/50">
+      <footer className="border-t bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/50 animate-fade-in" style={{ animationDelay: '0.4s' }}>
         <div className="container mx-auto px-4 py-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <Phone className="h-4 w-4" />
+            <div className="flex items-center gap-2 hover:text-foreground transition-colors duration-200">
+              <Phone className="h-4 w-4 text-red-500" />
               <span>Emergency: 911</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Phone className="h-4 w-4" />
+            <div className="flex items-center gap-2 hover:text-foreground transition-colors duration-200">
+              <Phone className="h-4 w-4 text-primary" />
               <span>Main: (555) 123-4567</span>
             </div>
-            <div className="flex items-center gap-2">
-              <MapPin className="h-4 w-4" />
+            <div className="flex items-center gap-2 hover:text-foreground transition-colors duration-200">
+              <MapPin className="h-4 w-4 text-accent" />
               <span>123 Medical Center Drive</span>
             </div>
           </div>

@@ -12,7 +12,7 @@ interface ChatMessageProps {
 export function ChatMessage({ message, isBot, timestamp }: ChatMessageProps) {
   return (
     <div className={cn(
-      'flex gap-3 mb-4 animate-slide-up',
+      'flex gap-3 mb-4',
       isBot ? 'justify-start' : 'justify-end'
     )}>
       {isBot && (

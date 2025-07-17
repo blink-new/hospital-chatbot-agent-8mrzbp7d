@@ -27,22 +27,22 @@ export function ChatInput({ onSendMessage, disabled }: ChatInputProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2 items-end">
+    <form onSubmit={handleSubmit} className="flex gap-2 items-end animate-fade-in">
       <Textarea
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyPress={handleKeyPress}
         placeholder="Type your message here..."
-        className="min-h-[44px] max-h-32 resize-none"
+        className="min-h-[44px] max-h-32 resize-none transition-all duration-200 focus:ring-2 focus:ring-primary/20"
         disabled={disabled}
       />
       <Button 
         type="submit" 
         size="icon"
         disabled={!message.trim() || disabled}
-        className="h-11 w-11 shrink-0"
+        className="h-11 w-11 shrink-0 hover:scale-105 transition-all duration-200 disabled:hover:scale-100"
       >
-        <Send className="h-4 w-4" />
+        <Send className={`h-4 w-4 transition-transform duration-200 ${!message.trim() || disabled ? '' : 'hover:translate-x-0.5'}`} />
       </Button>
     </form>
   )

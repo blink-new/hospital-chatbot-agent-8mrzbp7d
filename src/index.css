@@ -86,3 +86,49 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  .animate-pulse-gentle {
+    animation: pulseGentle 2s ease-in-out infinite;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0%;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 100%;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0%;
+  }
+
+  to {
+    opacity: 100%;
+  }
+}
+
+@keyframes pulseGentle {
+  0%, 100% {
+    opacity: 100%;
+  }
+
+  50% {
+    opacity: 70%;
+  }
+}
